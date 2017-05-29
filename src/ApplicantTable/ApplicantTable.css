@@ -13,6 +13,7 @@
 
 .table-body {
   float: left;
+  margin-top: 8px;
 }
 
 .table-cell {
@@ -31,8 +32,8 @@
 .table-cell.applicant { width: 300px }
 .table-cell.status { width: 200px }
 .table-cell.application-date { width: 175px }
+.table-cell.location { width: 150px; }
 .table-cell.more-actions {
-  /*width: 16px;*/
   margin-right: 4px;
   margin-top: 16px;
   float: right;

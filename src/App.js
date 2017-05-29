@@ -4,7 +4,8 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import {tealA400} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import applicants from './data.json';
+import originalApplicantsFile from './data.json';
+import moreApplicantsFile from './applicants.json';
 
 import './App.css';
 
@@ -40,13 +41,19 @@ class App extends Component {
     this.openNext = this.openNext.bind(this);
     this.openPrev = this.openPrev.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.setListData = this.setListData.bind(this);
   }
 
   componentWillMount() {
     injectTapEventPlugin();
+    this.setListData(originalApplicantsFile);
+  }
+
+  setListData(jsonFile) {
+    let sortedApplicants = _.sortBy(jsonFile, function(applicant) { return applicant.name; });
 
     this.setState({
-      applicants: applicants
+      applicants: sortedApplicants
     });
   }
 
@@ -127,6 +134,7 @@ class App extends Component {
             title="Nimble"
             iconClassNameRight="muidocs-icon-navigation-expand-more"
             style={{position: 'fixed'}}
+            onLeftIconButtonTouchTap={() => this.setListData(moreApplicantsFile)}
           />
           <ApplicantTable applicants={this.state.applicants} handleOpen={this.handleOpen} />
           <ApplicantModal

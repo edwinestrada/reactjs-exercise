@@ -25,9 +25,8 @@ export default class ApplicantTable extends React.Component {
           <div className="table-cell status with-padding">Status</div>
           <div className="table-cell application-date with-padding">Application Date</div>
           <div className="table-cell with-padding">Last Action</div>
-          <div className="table-cell with-padding">Location</div>
+          <div className="table-cell location with-padding">Location</div>
           <div className="table-cell with-padding">High Needs</div>
-          <div className="table-cell more-actions with-padding">&nbsp;</div>
         </div>
         <div className="table-body">{this.renderRows(this.props.applicants)}</div>
       </div>
