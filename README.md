@@ -10,7 +10,7 @@ Keyboard shortcuts for modal:
 
 Click the hamburger button in the top left to add more data.
 
-
+![Load more data](http://imgur.com/a/6hxOX)
 
 Refresh the page to get the original data back into the table.
 
