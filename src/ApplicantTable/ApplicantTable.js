@@ -1,12 +1,10 @@
 import React from 'react';
-import _ from 'lodash';
+
+import './ApplicantTable.css';
 
 import ApplicantRow from './ApplicantRow';
 
 export default class ApplicantTable extends React.Component {
-  NAME_KEY = 'name';
-  DATE_KEY = 'applicationDate';
-
   constructor(props, context){
     super(props, context);
     this.state = {
@@ -15,50 +13,24 @@ export default class ApplicantTable extends React.Component {
     };
   }
 
-  handleSortByName = () => {
-    this.setState(prevState => ({ sortBy: this.NAME_KEY }));
-    this.setState(prevState => ({ sortByReverse: !prevState.sortByReverse }));
-  };
-
-  handleSortByDate = () => {
-    this.setState(prevState => ({ sortBy: this.DATE_KEY }));
-    this.setState(prevState => ({ sortByReverse: !prevState.sortByReverse }));
-  };
-
-  renderRows = (applicants, sortBy, sortByReverse) => {
-    if(!_.isEmpty(applicants)){
-      let sortedApplicants = _.sortBy(applicants, function(applicant) { return applicant[sortBy]; });
-      if (sortByReverse) sortedApplicants.reverse();
-      return sortedApplicants.map((applicant, index) => <ApplicantRow key={index} {...applicant} />);
-    }
-  };
-
-  getSortIcon = (sortBy, sortByType) => {
-    const sortDirection = this.state.sortByReverse ? 'desc' : 'asc';
-    const iconClass = `fa fa-sort-${sortDirection}`;
-    return sortBy === this.state.sortBy ? <i className={iconClass} aria-hidden="true"></i> : <i className="fa fa-sort" aria-hidden="true"></i>;
+  renderRows = (applicants) => {
+    return applicants.map((applicant, index) => <ApplicantRow key={index} handleClick={this.props.handleOpen} applicant={applicant} />);
   };
 
   render() {
     return (
-      <table className="">
-        <thead className="">
-          <tr className="">
-            <th className="" onClick={this.handleSortByName}>
-              Name {this.getSortIcon(this.NAME_KEY, 'alpha')}
-            </th>
-            <th className="">Status</th>
-            <th className="" onClick={this.handleSortByDate}>
-              Application Date {this.getSortIcon(this.DATE_KEY, 'numeric')}
-            </th>
-            <th className="">Last Action</th>
-            <th className="">Location</th>
-            <th className="">High Needs</th>
-            <th className="">...</th>
-          </tr>
-        </thead>
-        <tbody>{this.renderRows(this.props.applicants, this.state.sortBy, this.state.sortByReverse)}</tbody>
-      </table>
+      <div className="table-container">
+        <div className="table-header">
+          <div className="table-cell with-padding applicant">Applicant</div>
+          <div className="table-cell status with-padding">Status</div>
+          <div className="table-cell application-date with-padding">Application Date</div>
+          <div className="table-cell with-padding">Last Action</div>
+          <div className="table-cell with-padding">Location</div>
+          <div className="table-cell with-padding">High Needs</div>
+          <div className="table-cell more-actions with-padding">&nbsp;</div>
+        </div>
+        <div className="table-body">{this.renderRows(this.props.applicants)}</div>
+      </div>
     );
   }
 };

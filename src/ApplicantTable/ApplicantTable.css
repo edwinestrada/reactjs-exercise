@@ -1,0 +1,39 @@
+.table-container {
+  max-width: 1200px;
+  margin: auto;
+  padding-top: 64px;
+}
+
+.table-header .with-padding.table-cell{
+  text-transform: uppercase;
+  color: #8C97A6;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.table-body {
+  float: left;
+}
+
+.table-cell {
+  float: left;
+}
+
+.table-cell.with-padding {
+  padding: 28px 10px 0;
+  box-sizing: border-box;
+  position: relative;
+  white-space: nowrap;
+  color: #676772;
+  width: 125px;
+}
+
+.table-cell.applicant { width: 300px }
+.table-cell.status { width: 200px }
+.table-cell.application-date { width: 175px }
+.table-cell.more-actions {
+  /*width: 16px;*/
+  margin-right: 4px;
+  margin-top: 16px;
+  float: right;
+}
